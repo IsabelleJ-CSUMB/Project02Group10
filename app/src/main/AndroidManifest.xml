@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project2Group10REAL">
         <activity
+            android:name=".DataViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BudgetingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SpendingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLandingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LandingActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity

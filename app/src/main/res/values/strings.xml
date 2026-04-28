@@ -10,4 +10,6 @@
     <string name="back_to_landing_page">Back To Landing Page</string>
     <string name="exit">Exit</string>
     <string name="exit_2">Exit</string>
+    <string name="budgeting">Budgeting</string>
+    <string name="spending">Spending</string>
 </resources>

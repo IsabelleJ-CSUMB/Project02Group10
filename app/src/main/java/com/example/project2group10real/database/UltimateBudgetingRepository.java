@@ -25,7 +25,7 @@ public class UltimateBudgetingRepository {
         UltimateBudgetingDatabase db = UltimateBudgetingDatabase.getDatabase(application);
         this.spendingDAO = db.spendingDao();
         this.userDAO = db.userDAO();
-        this.budgetingDAO - db.budgetingDAO();
+        this.budgetingDAO = db.budgetingDAO();
     }
 
     public static UltimateBudgetingRepository getRepository(Application application) {
