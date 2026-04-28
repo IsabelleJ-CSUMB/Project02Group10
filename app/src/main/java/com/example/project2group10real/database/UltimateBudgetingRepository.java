@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.project2group10real.LandingActivity;
 import com.example.project2group10real.MainActivity;
+import com.example.project2group10real.database.entities.SpendingLog;
 
 import java.util.ArrayList;
 import java.util.List;
