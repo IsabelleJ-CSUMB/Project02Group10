@@ -7,4 +7,7 @@
     <string name="password">password</string>
     <string name="please_log_in">Please Log in.</string>
     <string name="please_sign_up">Please Sign Up</string>
+    <string name="back_to_landing_page">Back To Landing Page</string>
+    <string name="exit">Exit</string>
+    <string name="exit_2">Exit</string>
 </resources>

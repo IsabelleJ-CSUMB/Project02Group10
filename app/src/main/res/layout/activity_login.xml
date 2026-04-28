@@ -55,4 +55,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordLoginEditText"
         />
+    <Button
+        android:id="@+id/goBackToMainActivityButtonFromLogin"
+        android:layout_height="55dp"
+        android:layout_width="match_parent"
+        android:text="@string/exit_2"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
