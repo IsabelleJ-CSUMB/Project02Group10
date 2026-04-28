@@ -7,4 +7,55 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+    <TextView
+        android:id="@+id/titleSignUpTextView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/please_sign_up"
+        android:textSize="42sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <EditText
+        android:id="@+id/userNameSignUpEditText"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:autofillHints="Please Enter Username"
+        android:hint="@string/username"
+        android:gravity="center"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleSignUpTextView"
+        />
+    <EditText
+        android:id="@+id/passwordSignUpEditText"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:autofillHints="Please Enter Password"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userNameSignUpEditText"
+        />
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_height="75dp"
+        android:layout_width="match_parent"
+        android:text="@string/sign_up"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordSignUpEditText"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
