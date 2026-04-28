@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Project2Group10REAL</string>
-    <string name="welcome_to_ultimate_budgeting">Welcome to Ultimate Budgeting!!</string>
-    <string name="spending">Spending</string>
-    <string name="budgeting">Budgeting</string>
+    <string name="welcome_to_ultimate_budgeting">Welcome to Ultimate Budgeting</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">password</string>
+    <string name="please_log_in">Please Log in.</string>
+    <string name="please_sign_up">Please Sign Up</string>
+    <string name="back_to_landing_page">Back To Landing Page</string>
+    <string name="exit">Exit</string>
+    <string name="exit_2">Exit</string>
 </resources>
