@@ -7,4 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".BudgetingActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="@string/budgeting_to_be_implemented"
+        android:textSize="40sp"
+        android:id="@+id/SpendingHeaderTextView"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

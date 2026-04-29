@@ -24,6 +24,10 @@ public class UltimateBudgetingRepository {
 
     private static UltimateBudgetingRepository repository;
 
+    /**
+     * Note: most returns are commented out with null returns added to allow the app to run
+     * this will be changed in the future
+     */
     private UltimateBudgetingRepository(Application application) {
         UltimateBudgetingDatabase db = UltimateBudgetingDatabase.getDatabase(application);
         this.spendingDAO = db.spendingDao();
@@ -56,7 +60,8 @@ public class UltimateBudgetingRepository {
                 new Callable<ArrayList<SpendingLog>>() {
                     @Override
                     public ArrayList<SpendingLog> call() throws Exception {
-                        return (ArrayList<SpendingLog>) spendingDAO.getAllRecords();
+                        //return (ArrayList<SpendingLog>) spendingDAO.getAllRecords();
+                        return null;
                     }
                 });
         try {
@@ -71,14 +76,14 @@ public class UltimateBudgetingRepository {
     public void insertSpendingLog(SpendingLog spendingLog) {
         UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
         {
-            spendingDAO.insert(spendingLog);
+            //spendingDAO.insert(spendingLog);
         });
     }
 
     public void insertBudgetingLog(BudgetingLog budgetingLog) {
         UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
         {
-            budgetingDAO.insert(budgetingLog);
+            //budgetingDAO.insert(budgetingLog);
         });
     }
 
@@ -98,11 +103,13 @@ public class UltimateBudgetingRepository {
     }
 
     public LiveData<List<SpendingLog>> getSpendingLogsByUserIDLiveData(int userID) {
-        return spendingDAO.getAllLogsByUserIDLiveData(userID);
+        //return spendingDAO.getAllLogsByUserIDLiveData(userID);
+        return null;
     }
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
-        return budgetingDAO.getAllLogsByUserIDLiveData(userID);
+        //return budgetingDAO.getAllLogsByUserIDLiveData(userID);
+        return null;
     }
 
 }
