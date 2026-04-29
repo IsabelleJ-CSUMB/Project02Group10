@@ -7,7 +7,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.project2group10real.LandingActivity;
 import com.example.project2group10real.MainActivity;
+import com.example.project2group10real.database.entities.BudgetingLog;
 import com.example.project2group10real.database.entities.SpendingLog;
+import com.example.project2group10real.database.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,7 @@ public class UltimateBudgetingRepository {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-            Log.i(MainActivity.TAG, "Problem when getting all SpendingLogs in the repo");
+            Log.i(LandingActivity.TAG, "Problem when getting all SpendingLogs in the repo");
         }
         return null;
     }

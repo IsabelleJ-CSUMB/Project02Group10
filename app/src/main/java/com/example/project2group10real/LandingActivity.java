@@ -6,7 +6,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LandingActivity extends AppCompatActivity {
-    public final String TAG = "PROJECT2GROUP10_ULTIMATE_BUDGETING";
+    public static final String TAG = "PROJECT2GROUP10_ULTIMATE_BUDGETING";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
