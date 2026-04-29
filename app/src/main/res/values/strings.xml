@@ -12,4 +12,6 @@
     <string name="exit_2">Exit</string>
     <string name="budgeting">Budgeting</string>
     <string name="spending">Spending</string>
+    <string name="budgeting_to_be_implemented">Budgeting to be implemented</string>
+    <string name="spending_to_be_implemented">Spending to be implemented</string>
 </resources>
