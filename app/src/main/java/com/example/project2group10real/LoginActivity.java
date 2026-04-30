@@ -2,6 +2,7 @@ package com.example.project2group10real;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -54,6 +55,11 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
+
+                    SharedPreferences sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
                     startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), user.getUser_id()));
                 } else {
                     toastMaker("Invalid password!");

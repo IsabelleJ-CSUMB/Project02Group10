@@ -91,7 +91,7 @@ public class UltimateBudgetingRepository {
         UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
         {
             userDAO.insert(user);
-        }        );
+        });
     }
 
     public LiveData<User> getUserByUsername(String username) {

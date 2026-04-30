@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        SharedPreferences sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         Boolean isLoggedIn = sharedPref.getBoolean("isLoggedIn", false);
 
         if(isLoggedIn) {
