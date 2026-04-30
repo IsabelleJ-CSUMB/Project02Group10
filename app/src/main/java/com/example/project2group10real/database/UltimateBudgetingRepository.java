@@ -60,7 +60,7 @@ public class UltimateBudgetingRepository {
                 new Callable<ArrayList<SpendingLog>>() {
                     @Override
                     public ArrayList<SpendingLog> call() throws Exception {
-                        //return (ArrayList<SpendingLog>) spendingDAO.getAllRecords();
+                        return (ArrayList<SpendingLog>) spendingDAO.getAllRecords();
                         return null;
                     }
                 });
@@ -76,7 +76,7 @@ public class UltimateBudgetingRepository {
     public void insertSpendingLog(SpendingLog spendingLog) {
         UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
         {
-            //spendingDAO.insert(spendingLog);
+            spendingDAO.insert(spendingLog);
         });
     }
 
@@ -103,8 +103,8 @@ public class UltimateBudgetingRepository {
     }
 
     public LiveData<List<SpendingLog>> getSpendingLogsByUserIDLiveData(int userID) {
-        //return spendingDAO.getAllLogsByUserIDLiveData(userID);
-        return null;
+        return spendingDAO.getAllLogsByUserIDLiveData(userID);
+
     }
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
