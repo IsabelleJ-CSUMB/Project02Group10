@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project2Group10REAL">
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity
             android:name=".DataViewActivity"
             android:exported="false" />
@@ -19,9 +19,6 @@
             android:exported="false" />
         <activity
             android:name=".SpendingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminLandingActivity"
             android:exported="false" />
         <activity
             android:name=".LandingActivity"
