@@ -83,7 +83,7 @@ public class UltimateBudgetingRepository {
     public void insertBudgetingLog(BudgetingLog budgetingLog) {
         UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
         {
-            //budgetingDAO.insert(budgetingLog);
+            budgetingDAO.insert(budgetingLog);
         });
     }
 
@@ -108,8 +108,7 @@ public class UltimateBudgetingRepository {
     }
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
-        //return budgetingDAO.getAllLogsByUserIDLiveData(userID);
-        return null;
+        return budgetingDAO.getAllLogsByUserIDLiveData(userID);
     }
 
 }
