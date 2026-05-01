@@ -27,7 +27,7 @@ public class LandingActivity extends AppCompatActivity {
     public static final String LANDING_ACTIVITY_USERID = "LANDING_ACTIVITY_USERID";
 
     private int loggedInID;
-    public static final int LOG_OUT = -1;
+    private boolean loginStatus = false;
     private User user;
     private UltimateBudgetingRepository repository;
 
@@ -106,16 +106,18 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        loggedInID = LOG_OUT;
+        loginStatus = false;
+        loggedInID = -1;
         updateSharedPreference();
-        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, loggedInID);
-        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+        getIntent().putExtra(LANDING_ACTIVITY_USERID, loggedInID);
+        startActivity(MainActivity.mainIntentFactory(getApplicationContext()));
     }
 
+
     private void updateSharedPreference() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
-        sharedPreferencesEditor.putInt(getString(R.string.preference_userid_key),loggedInID);
+        sharedPreferencesEditor.putBoolean("isLoggedIn",loginStatus);
         sharedPreferencesEditor.apply();
     }
 
@@ -127,17 +129,32 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     private void loginUser(Bundle savedInstanceState) {
-//        //check shared preference for logged in user
-//        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        //check shared preference for logged in user
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        loginStatus = sharedPreferences.getBoolean("isLoggedIn", loginStatus);
+        if (loginStatus == false) {
+            return;
+        }
+        loggedInID = getIntent().getIntExtra(LANDING_ACTIVITY_USERID, -1);
+
+        LiveData<User> userObserver = repository.getUserByUserID(loggedInID);
+        userObserver.observe(this, user -> {
+            this.user = user;
+            if (user != null) {
+                invalidateOptionsMenu();
+            }
+       });
+
 //        loggedInID = sharedPreferences.getInt(getString(R.string.preference_userid_key), LOG_OUT);
 //
-//        if (loggedInID == LOG_OUT && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
+//        if (loggedInID == -1 && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
 //            loggedInID = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOG_OUT);
 //        }
-//        if (loggedInID == LOG_OUT) {
+//        if (loggedInID == -1) {
 //            loggedInID = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOG_OUT);
 //        }
-//        if(loggedInID == LOG_OUT) {
+//        if(loggedInID == -1) {
 //            return;
 //        }
 //        LiveData<User> userObserver = repository.getUserByUserID(loggedInID);
@@ -146,7 +163,7 @@ public class LandingActivity extends AppCompatActivity {
 //            if (user != null) {
 //                invalidateOptionsMenu();
 //            }
-//        });
+//       });
     }
 
 
