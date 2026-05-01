@@ -40,6 +40,13 @@ public class LandingActivity extends AppCompatActivity {
 
         repository = UltimateBudgetingRepository.getRepository(getApplication());
 
+        loginUser(savedInstanceState);
+
+        if(loggedInID == -1) {
+            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            startActivity(intent);
+        }
+
         binding.spendingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
