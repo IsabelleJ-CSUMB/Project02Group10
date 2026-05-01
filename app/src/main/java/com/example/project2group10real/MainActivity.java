@@ -54,4 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    static Intent mainIntentFactory(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
 }
