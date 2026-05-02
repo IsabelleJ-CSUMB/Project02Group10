@@ -29,6 +29,10 @@ public class LandingActivity extends AppCompatActivity {
     private int loggedInID;
     private boolean loginStatus = false;
     private User user;
+    private boolean adminStatus = false;
+
+
+
     private UltimateBudgetingRepository repository;
 
     @Override
@@ -149,7 +153,10 @@ public class LandingActivity extends AppCompatActivity {
         userObserver.observe(this, user -> {
             this.user = user;
             if (user != null) {
+
+                adminStatus = user.isAdmin();
                 invalidateOptionsMenu();
+
             }
        });
 
