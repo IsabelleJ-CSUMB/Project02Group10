@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity
+            android:name=".LogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".seeAllMonthsActivity"
+            android:exported="false" />
+        <activity
             android:name=".DataViewActivity"
             android:exported="false" />
         <activity
@@ -32,6 +38,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
