@@ -8,11 +8,47 @@
     tools:context=".SpendingActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="@string/spending_to_be_implemented"
-        android:textSize="40sp"
         android:id="@+id/SpendingHeaderTextView"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/spending"
+        android:textSize="40sp"
+        android:gravity="center"
 
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:text="Log"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf= "@id/SpendingHeaderTextView" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:text="see month"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button1" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:text="All data"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
