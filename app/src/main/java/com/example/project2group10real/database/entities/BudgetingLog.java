@@ -14,25 +14,25 @@ public class BudgetingLog {
     private int id;
     private int userID;
     private int amount;
-    private String category;
+    private int goal;
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         BudgetingLog that = (BudgetingLog) o;
-        return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(category, that.category);
+        return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(goal, that.goal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userID, amount, category);
+        return Objects.hash(id, userID, amount, goal);
     }
 
     @Ignore
-    public BudgetingLog(int userID, int amount, String category) {
+    public BudgetingLog(int userID, int amount, int goal) {
         this.userID = userID;
         this.amount = amount;
-        this.category = category;
+        this.goal = goal;
     }
 
     public BudgetingLog() {
@@ -63,11 +63,15 @@ public class BudgetingLog {
         this.amount = amount;
     }
 
-    public String getCategory() {
-        return category;
+    public int getGoal() {
+        return goal;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public void setCategory(int goal) {
+        this.goal = this.goal;
     }
 }

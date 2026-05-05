@@ -10,16 +10,25 @@ import java.util.Objects;
 
 @Entity(tableName = UltimateBudgetingDatabase.SPENDING_TABLE)
 public class SpendingLog {
+<<<<<<< HEAD
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int userID;
     private int amount;
     private String category;
+=======
+        @PrimaryKey(autoGenerate = true)
+        private int id;
+        private int userID;
+        private double amount;
+        private String spendingName;
+>>>>>>> origin/main
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SpendingLog that = (SpendingLog) o;
+<<<<<<< HEAD
         return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(category, that.category);
     }
 
@@ -37,10 +46,65 @@ public class SpendingLog {
         this.userID = userID;
         this.amount = amount;
         this.category = category;
+=======
+        return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(spendingName, that.spendingName);
+>>>>>>> origin/main
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userID, amount, spendingName);
+    }
+
+    @Ignore
+        public SpendingLog(int userID, double amount, String category) {
+            this.userID = userID;
+            this.amount = amount;
+            this.spendingName = category;
+        }
+
+        public SpendingLog() {
+
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getUserID() {
+            return userID;
+        }
+
+        public void setUserID(int userID) {
+            this.userID = userID;
+        }
+
+        public double getAmount() {
+            return amount;
+        }
+
+        public void setAmount(double amount) {
+            this.amount = amount;
+        }
+
+        public String getSpendingName() {
+            return spendingName;
+        }
+
+        public void setSpendingName(String spendingName) {
+            this.spendingName = spendingName;
+        }
+
+    @Override
+    public String toString() {
+        return "SpendingLog{" +
+                ", amount=" + amount +
+                ", spendingName='" + spendingName + '\'' +
+                '}';
     }
 
     public void setId(int id) {
@@ -71,3 +135,5 @@ public class SpendingLog {
         this.category = category;
     }
 }
+
+

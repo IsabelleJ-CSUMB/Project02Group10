@@ -16,7 +16,7 @@ import com.example.project2group10real.database.entities.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {BudgetingLog.class, SpendingLog.class, User.class}, version = 2, exportSchema = false)
+@Database(entities = {BudgetingLog.class, SpendingLog.class, User.class}, version = 3, exportSchema = false)
 public abstract class UltimateBudgetingDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "ULTIMATE_BUDGETING_DATABASE";

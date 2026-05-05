@@ -102,13 +102,19 @@ public class UltimateBudgetingRepository {
         return userDAO.getUserByUserID(userID);
     }
 
+<<<<<<< HEAD
     public LiveData<List<SpendingLog>> getSpendingLogsByUserIDLiveData(int userID) {
         return spendingDAO.getAllLogsByUserIDLiveData(userID);
 
+=======
+    public LiveData<List<SpendingLog>> getAllSpendingLogsByUserID(int userID) {
+        return spendingDAO.getAllLogsByUserID(userID);
+>>>>>>> origin/main
     }
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
         return budgetingDAO.getAllLogsByUserIDLiveData(userID);
     }
+
 
 }
