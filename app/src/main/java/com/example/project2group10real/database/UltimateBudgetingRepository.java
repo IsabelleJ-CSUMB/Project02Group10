@@ -76,7 +76,7 @@ public class UltimateBudgetingRepository {
     public void insertSpendingLog(SpendingLog spendingLog) {
         UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
         {
-            //spendingDAO.insert(spendingLog);
+            spendingDAO.insert(spendingLog);
         });
     }
 
@@ -102,14 +102,14 @@ public class UltimateBudgetingRepository {
         return userDAO.getUserByUserID(userID);
     }
 
-    public LiveData<List<SpendingLog>> getSpendingLogsByUserIDLiveData(int userID) {
-        //return spendingDAO.getAllLogsByUserIDLiveData(userID);
-        return null;
+    public LiveData<List<SpendingLog>> getAllSpendingLogsByUserID(int userID) {
+        return spendingDAO.getAllLogsByUserID(userID);
     }
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
         //return budgetingDAO.getAllLogsByUserIDLiveData(userID);
         return null;
     }
+
 
 }
