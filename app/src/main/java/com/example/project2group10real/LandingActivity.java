@@ -54,8 +54,7 @@ public class LandingActivity extends AppCompatActivity {
         binding.spendingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LandingActivity.this, SpendingActivity.class);
-                startActivity(intent);
+                startActivity(SpendingActivity.spendingViewActivityIntentFactory(getApplicationContext(), loggedInID));
             }
         });
 
@@ -160,24 +159,6 @@ public class LandingActivity extends AppCompatActivity {
             }
        });
 
-//        loggedInID = sharedPreferences.getInt(getString(R.string.preference_userid_key), LOG_OUT);
-//
-//        if (loggedInID == -1 && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
-//            loggedInID = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOG_OUT);
-//        }
-//        if (loggedInID == -1) {
-//            loggedInID = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOG_OUT);
-//        }
-//        if(loggedInID == -1) {
-//            return;
-//        }
-//        LiveData<User> userObserver = repository.getUserByUserID(loggedInID);
-//        userObserver.observe(this, user -> {
-//            this.user = user;
-//            if (user != null) {
-//                invalidateOptionsMenu();
-//            }
-//       });
     }
 
 
