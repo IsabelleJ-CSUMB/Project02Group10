@@ -154,13 +154,23 @@ public class LandingActivity extends AppCompatActivity {
             if (user != null) {
 
                 adminStatus = user.isAdmin();
+
+                // 👇 ADD THIS HERE
+                if (adminStatus) {
+                    binding.adminButton.setVisibility(View.VISIBLE);
+                    binding.adminButton.setText("Admin");
+                } else {
+                    binding.adminButton.setVisibility(View.GONE);
+                }
+
                 invalidateOptionsMenu();
-
             }
-       });
+        });
 
+        binding.adminButton.setOnClickListener(v -> {
+            startActivity(new Intent(LandingActivity.this, AdminActivity.class));
+        });
     }
-
 
 
 
