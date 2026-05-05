@@ -6,7 +6,6 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.project2group10real.LandingActivity;
-import com.example.project2group10real.MainActivity;
 import com.example.project2group10real.database.entities.BudgetingLog;
 import com.example.project2group10real.database.entities.SpendingLog;
 import com.example.project2group10real.database.entities.User;
@@ -24,10 +23,6 @@ public class UltimateBudgetingRepository {
 
     private static UltimateBudgetingRepository repository;
 
-    /**
-     * Note: most returns are commented out with null returns added to allow the app to run
-     * this will be changed in the future
-     */
     private UltimateBudgetingRepository(Application application) {
         UltimateBudgetingDatabase db = UltimateBudgetingDatabase.getDatabase(application);
         this.spendingDAO = db.spendingDao();
@@ -56,12 +51,11 @@ public class UltimateBudgetingRepository {
     }
 
     public List<SpendingLog> getAllLogs() {
-        Future<ArrayList<SpendingLog>> future  = UltimateBudgetingDatabase.databaseWriteExecutor.submit(
+        Future<ArrayList<SpendingLog>> future = UltimateBudgetingDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<SpendingLog>>() {
                     @Override
                     public ArrayList<SpendingLog> call() throws Exception {
                         return (ArrayList<SpendingLog>) spendingDAO.getAllRecords();
-                        return null;
                     }
                 });
         try {
@@ -74,24 +68,15 @@ public class UltimateBudgetingRepository {
     }
 
     public void insertSpendingLog(SpendingLog spendingLog) {
-        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
-        {
-            spendingDAO.insert(spendingLog);
-        });
+        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() -> spendingDAO.insert(spendingLog));
     }
 
     public void insertBudgetingLog(BudgetingLog budgetingLog) {
-        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
-        {
-            budgetingDAO.insert(budgetingLog);
-        });
+        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() -> budgetingDAO.insert(budgetingLog));
     }
 
     public void insertUser(User... user) {
-        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() ->
-        {
-            userDAO.insert(user);
-        });
+        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() -> userDAO.insert(user));
     }
 
     public LiveData<User> getUserByUsername(String username) {
@@ -102,19 +87,11 @@ public class UltimateBudgetingRepository {
         return userDAO.getUserByUserID(userID);
     }
 
-<<<<<<< HEAD
-    public LiveData<List<SpendingLog>> getSpendingLogsByUserIDLiveData(int userID) {
-        return spendingDAO.getAllLogsByUserIDLiveData(userID);
-
-=======
     public LiveData<List<SpendingLog>> getAllSpendingLogsByUserID(int userID) {
         return spendingDAO.getAllLogsByUserID(userID);
->>>>>>> origin/main
     }
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
         return budgetingDAO.getAllLogsByUserIDLiveData(userID);
     }
-
-
 }

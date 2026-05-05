@@ -10,45 +10,18 @@ import java.util.Objects;
 
 @Entity(tableName = UltimateBudgetingDatabase.SPENDING_TABLE)
 public class SpendingLog {
-<<<<<<< HEAD
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int userID;
-    private int amount;
-    private String category;
-=======
-        @PrimaryKey(autoGenerate = true)
-        private int id;
-        private int userID;
-        private double amount;
-        private String spendingName;
->>>>>>> origin/main
+    private double amount;
+    private String spendingName;
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SpendingLog that = (SpendingLog) o;
-<<<<<<< HEAD
-        return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(category, that.category);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userID, amount, category);
-    }
-
-    public SpendingLog() {
-
-    }
-
-    @Ignore
-    public SpendingLog(int userID, int amount, String category) {
-        this.userID = userID;
-        this.amount = amount;
-        this.category = category;
-=======
         return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(spendingName, that.spendingName);
->>>>>>> origin/main
     }
 
     @Override
@@ -56,84 +29,32 @@ public class SpendingLog {
         return Objects.hash(id, userID, amount, spendingName);
     }
 
+    public SpendingLog() {}
+
     @Ignore
-        public SpendingLog(int userID, double amount, String category) {
-            this.userID = userID;
-            this.amount = amount;
-            this.spendingName = category;
-        }
+    public SpendingLog(int userID, double amount, String spendingName) {
+        this.userID = userID;
+        this.amount = amount;
+        this.spendingName = spendingName;
+    }
 
-        public SpendingLog() {
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-        }
+    public int getUserID() { return userID; }
+    public void setUserID(int userID) { this.userID = userID; }
 
-        public int getId() {
-            return id;
-        }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public int getUserID() {
-            return userID;
-        }
-
-        public void setUserID(int userID) {
-            this.userID = userID;
-        }
-
-        public double getAmount() {
-            return amount;
-        }
-
-        public void setAmount(double amount) {
-            this.amount = amount;
-        }
-
-        public String getSpendingName() {
-            return spendingName;
-        }
-
-        public void setSpendingName(String spendingName) {
-            this.spendingName = spendingName;
-        }
+    public String getSpendingName() { return spendingName; }
+    public void setSpendingName(String spendingName) { this.spendingName = spendingName; }
 
     @Override
     public String toString() {
         return "SpendingLog{" +
-                ", amount=" + amount +
+                "amount=" + amount +
                 ", spendingName='" + spendingName + '\'' +
                 '}';
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }
-
-
