@@ -31,7 +31,7 @@ public class SpendingActivity extends AppCompatActivity {
 
         repository = UltimateBudgetingRepository.getRepository(getApplication());
         loggedInID = getIntent().getIntExtra(SPENDING_VIEW_ACTIVITY_USERID, -1);
-        // Button 1 → Log page
+        
         binding.button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,12 +40,12 @@ public class SpendingActivity extends AppCompatActivity {
             }
     });
 
-        // Button 2 → See all months
+       
         binding.button2.setOnClickListener(v -> {
             startActivity(SeeMonthActivity.seeAllMonthsActivityIntentFactory(getApplicationContext(), loggedInID));
         });
 
-        // Button 3 → Data page
+        
         binding.button3.setOnClickListener(v -> {
             startActivity(DataViewActivity.dataViewActivityIntentFactory(getApplicationContext(), loggedInID));
         });
