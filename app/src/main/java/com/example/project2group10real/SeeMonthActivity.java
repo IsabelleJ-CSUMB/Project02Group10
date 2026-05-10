@@ -54,7 +54,7 @@ public class SeeMonthActivity extends AppCompatActivity {
         intent.putExtra(SEE_ALL_MONTHS_VIEW_ACTIVITY_USERID, userID);
         return intent;
     }
-    public long convertDateToLong(LocalDateTime date) {
+    public static long convertDateToLong(LocalDateTime date) {
         //.of = object factory
         ZonedDateTime zdt = ZonedDateTime.of(date, ZoneId.systemDefault());
         return zdt.toInstant().toEpochMilli();

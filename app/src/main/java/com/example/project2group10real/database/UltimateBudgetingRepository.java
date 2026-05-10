@@ -46,7 +46,7 @@ public class UltimateBudgetingRepository {
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            Log.i(LandingActivity.TAG, "Problem getting Repository, thread error");
+//            Log.i(LandingActivity.TAG, "Problem getting Repository, thread error");
         }
         return null;
     }

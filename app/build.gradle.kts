@@ -40,6 +40,8 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
+    val mockito_Version = "5.+"
+    testImplementation ("org.mockito:mockito-core:$mockito_Version")
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     val room_version = "2.8.4"
