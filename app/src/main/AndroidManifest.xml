@@ -15,7 +15,7 @@
             android:name=".LogActivity"
             android:exported="false" />
         <activity
-            android:name=".seeAllMonthsActivity"
+            android:name=".SeeAllMonthsActivity"
             android:exported="false" />
         <activity
             android:name=".DataViewActivity"

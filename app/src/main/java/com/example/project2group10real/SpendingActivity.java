@@ -45,7 +45,7 @@ public class SpendingActivity extends AppCompatActivity {
 
         // Button 2 → See all months
         binding.button2.setOnClickListener(v -> {
-            startActivity(new Intent(SpendingActivity.this, seeAllMonthsActivity.class));
+            startActivity(SeeAllMonthsActivity.seeAllMonthsActivityIntentFactory(getApplicationContext(), loggedInID));
         });
 
         // Button 3 → Data page

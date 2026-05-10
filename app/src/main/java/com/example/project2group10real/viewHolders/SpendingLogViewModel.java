@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.example.project2group10real.database.UltimateBudgetingRepository;
 import com.example.project2group10real.database.entities.SpendingLog;
 
+import java.time.Instant;
 import java.util.List;
 
 public class SpendingLogViewModel extends AndroidViewModel {
@@ -21,6 +22,10 @@ public class SpendingLogViewModel extends AndroidViewModel {
 
     public LiveData<List<SpendingLog>> getAllLogsByID(int userID) {
         return repository.getAllSpendingLogsByUserID(userID);
+    }
+
+    public LiveData<List<SpendingLog>> getAllLogsByIDCurrentMonth(int userID, long date) {
+        return repository.getAllSpendingLogsByUerIDCurrentMonth(userID, date);
     }
 
     public void insert(SpendingLog log) {

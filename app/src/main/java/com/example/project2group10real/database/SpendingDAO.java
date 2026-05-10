@@ -7,9 +7,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.project2group10real.database.entities.BudgetingLog;
 import com.example.project2group10real.database.entities.SpendingLog;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Dao
@@ -24,5 +24,8 @@ public interface SpendingDAO {
     LiveData<List<SpendingLog>> getAllLogsByUserID(int userID);
 
     @Delete
-    void delete(BudgetingLog budgetingLog);
+    void delete(SpendingLog spendingLog);
+
+    @Query("SELECT * FROM " + UltimateBudgetingDatabase.SPENDING_TABLE + " WHERE userID = :userID AND date/(1000 * 60 * 60 * 24)=:date / (1000 * 60 * 60 * 24)")
+    LiveData<List<SpendingLog>> getAllLogsbyUserIDCurrentMonth(int userID, long date);
 }
