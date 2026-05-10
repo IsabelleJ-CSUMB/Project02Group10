@@ -10,6 +10,7 @@ import com.example.project2group10real.database.entities.BudgetingLog;
 import com.example.project2group10real.database.entities.SpendingLog;
 import com.example.project2group10real.database.entities.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -93,5 +94,9 @@ public class UltimateBudgetingRepository {
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
         return budgetingDAO.getAllLogsByUserIDLiveData(userID);
+    }
+
+    public LiveData<List<SpendingLog>> getAllSpendingLogsByUerIDCurrentMonth(int userID, long date) {
+        return spendingDAO.getAllLogsbyUserIDCurrentMonth(userID, date);
     }
 }
