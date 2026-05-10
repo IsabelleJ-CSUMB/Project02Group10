@@ -16,7 +16,6 @@
     <string name="budgeting_to_be_implemented">Budgeting to be implemented</string>
     <string name="spending_to_be_implemented">Spending to be implemented</string>
 
-    <!-- BudgetingActivity strings -->
     <string name="budget_status_no_goal">Set a budget goal to get started.</string>
     <string name="budget_status_no_bills">No bills logged yet — you\'re on track!</string>
     <string name="budget_remaining">%1$s remaining</string>
