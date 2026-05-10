@@ -19,19 +19,16 @@ import androidx.lifecycle.LiveData;
 import com.example.project2group10real.database.UltimateBudgetingRepository;
 import com.example.project2group10real.database.entities.User;
 import com.example.project2group10real.databinding.ActivityLandingBinding;
-import com.example.project2group10real.databinding.ActivityMainBinding;
 
 public class LandingActivity extends AppCompatActivity {
     private ActivityLandingBinding binding;
-     public static final String TAG = "PROJECT2GROUP10_ULTIMATE_BUDGETING";
+    public static final String TAG = "PROJECT2GROUP10_ULTIMATE_BUDGETING";
     public static final String LANDING_ACTIVITY_USERID = "LANDING_ACTIVITY_USERID";
 
-    private int loggedInID;
+    private int loggedInID = -1;
     private boolean loginStatus = false;
     private User user;
     private boolean adminStatus = false;
-
-
 
     private UltimateBudgetingRepository repository;
 
@@ -46,9 +43,10 @@ public class LandingActivity extends AppCompatActivity {
 
         loginUser(savedInstanceState);
 
-        if(loggedInID == -1) {
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
-            startActivity(intent);
+        if (loggedInID == -1) {
+            startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+            finish();
+            return;
         }
 
         binding.spendingButton.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +59,9 @@ public class LandingActivity extends AppCompatActivity {
         binding.budgetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LandingActivity.this, BudgetingActivity.class);
-                startActivity(intent);
+                startActivity(BudgetingActivity.budgetingActivityIntentFactory(getApplicationContext(), loggedInID));
             }
         });
-
-
     }
 
     static Intent landingActivityIntentFactory(Context context, int userID) {
@@ -79,7 +74,7 @@ public class LandingActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.logOutMenuItem);
         item.setVisible(true);
-        if(user == null) {
+        if (user == null) {
             return false;
         }
         item.setTitle(user.getUsername());
@@ -95,7 +90,6 @@ public class LandingActivity extends AppCompatActivity {
 
     private void showLogoutDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(LandingActivity.this);
-        //instantiates memory for the alert dialog, prevents issues with multiples
         final AlertDialog alertDialog = alertBuilder.create();
         alertBuilder.setMessage("Logout?");
         alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
@@ -104,64 +98,51 @@ public class LandingActivity extends AppCompatActivity {
                 logout();
             }
         });
-
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 alertDialog.dismiss();
             }
         });
-
         alertBuilder.create().show();
     }
 
     private void logout() {
-        loginStatus = false;
-        loggedInID = -1;
-        updateSharedPreference();
-        getIntent().putExtra(LANDING_ACTIVITY_USERID, loggedInID);
-        startActivity(MainActivity.mainIntentFactory(getApplicationContext()));
-    }
-
-
-    private void updateSharedPreference() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
-        sharedPreferencesEditor.putBoolean("isLoggedIn",loginStatus);
-        sharedPreferencesEditor.apply();
+        sharedPreferences.edit()
+                .putBoolean("isLoggedIn", false)
+                .putInt("loggedInUserID", -1)
+                .apply();
+        startActivity(MainActivity.mainIntentFactory(getApplicationContext()));
+        finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout_menu,menu);
+        inflater.inflate(R.menu.logout_menu, menu);
         return true;
     }
 
     private void loginUser(Bundle savedInstanceState) {
-        //check shared preference for logged in user
-
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-        loginStatus = sharedPreferences.getBoolean("isLoggedIn", loginStatus);
-        if (loginStatus == false) {
+        loginStatus = sharedPreferences.getBoolean("isLoggedIn", false);
+        if (!loginStatus) {
             return;
         }
+
         loggedInID = getIntent().getIntExtra(LANDING_ACTIVITY_USERID, -1);
+        if (loggedInID == -1) {
+            loggedInID = sharedPreferences.getInt("loggedInUserID", -1);
+        }
 
         LiveData<User> userObserver = repository.getUserByUserID(loggedInID);
         userObserver.observe(this, user -> {
             this.user = user;
             if (user != null) {
-
                 adminStatus = user.isAdmin();
                 invalidateOptionsMenu();
-
             }
-       });
-
+        });
     }
-
-
-
-
 }

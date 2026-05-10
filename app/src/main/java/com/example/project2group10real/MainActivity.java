@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         Boolean isLoggedIn = sharedPref.getBoolean("isLoggedIn", false);
 
         if(isLoggedIn) {
-            Intent intent = new Intent(MainActivity.this, LandingActivity.class);
-            startActivity(intent);
+            int savedUserID = sharedPref.getInt("loggedInUserID", -1);
+            startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), savedUserID));
             finish();
             return;
         }

@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">Project2Group10REAL</string>
     <string name="welcome_to_ultimate_budgeting">Welcome to Ultimate Budgeting</string>
@@ -14,4 +15,13 @@
     <string name="spending">Spending</string>
     <string name="budgeting_to_be_implemented">Budgeting to be implemented</string>
     <string name="spending_to_be_implemented">Spending to be implemented</string>
+
+    <!-- BudgetingActivity strings -->
+    <string name="budget_status_no_goal">Set a budget goal to get started.</string>
+    <string name="budget_status_no_bills">No bills logged yet — you\'re on track!</string>
+    <string name="budget_remaining">%1$s remaining</string>
+    <string name="budget_status_percent">%1$d%% of your budget used</string>
+    <string name="budget_status_over">⚠ Over budget by %1$s!</string>
+    <string name="budget_status_maxed">100%% used</string>
 </resources>
+ 

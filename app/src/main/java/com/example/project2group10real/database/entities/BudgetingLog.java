@@ -20,7 +20,7 @@ public class BudgetingLog {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         BudgetingLog that = (BudgetingLog) o;
-        return id == that.id && userID == that.userID && amount == that.amount && Objects.equals(goal, that.goal);
+        return id == that.id && userID == that.userID && amount == that.amount && goal == that.goal;
     }
 
     @Override
