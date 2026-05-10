@@ -68,7 +68,7 @@ public class BudgetingActivity extends AppCompatActivity {
             }
         });
 
-        // Add Recurring Bill button
+      
         binding.addBillButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
