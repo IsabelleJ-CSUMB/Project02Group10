@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putBoolean("isLoggedIn", true);
+                    editor.putInt("loggedInUserID", user.getUser_id()); // save userID
                     editor.apply();
                     startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), user.getUser_id()));
                 } else {
