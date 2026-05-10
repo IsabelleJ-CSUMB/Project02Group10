@@ -8,9 +8,6 @@ import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.project2group10real.database.UltimateBudgetingRepository;
 import com.example.project2group10real.database.entities.SpendingLog;
@@ -45,7 +42,7 @@ public class SpendingActivity extends AppCompatActivity {
 
         // Button 2 → See all months
         binding.button2.setOnClickListener(v -> {
-            startActivity(SeeAllMonthsActivity.seeAllMonthsActivityIntentFactory(getApplicationContext(), loggedInID));
+            startActivity(SeeMonthActivity.seeAllMonthsActivityIntentFactory(getApplicationContext(), loggedInID));
         });
 
         // Button 3 → Data page

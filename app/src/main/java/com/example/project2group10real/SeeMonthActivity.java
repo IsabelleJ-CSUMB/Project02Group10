@@ -19,7 +19,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
-public class SeeAllMonthsActivity extends AppCompatActivity {
+public class SeeMonthActivity extends AppCompatActivity {
     private static final String SEE_ALL_MONTHS_VIEW_ACTIVITY_USERID = "SEE_ALL_MONTHS_VIEW_ACTIVITY_USERID";
     private SpendingLogViewModel model;
     private UltimateBudgetingRepository repository;
@@ -50,7 +50,7 @@ public class SeeAllMonthsActivity extends AppCompatActivity {
     }
 
     static Intent seeAllMonthsActivityIntentFactory(Context context, int userID) {
-        Intent intent = new Intent(context, SeeAllMonthsActivity.class);
+        Intent intent = new Intent(context, SeeMonthActivity.class);
         intent.putExtra(SEE_ALL_MONTHS_VIEW_ACTIVITY_USERID, userID);
         return intent;
     }
