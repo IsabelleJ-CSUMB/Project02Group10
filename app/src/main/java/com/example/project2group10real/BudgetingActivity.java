@@ -45,20 +45,13 @@ public class BudgetingActivity extends AppCompatActivity {
         budgetGoal = prefs.getFloat(KEY_GOAL + loggedInID, 0f);
         updateStatus();
 
-
         repository.getRecurringBillsByUserID(loggedInID).observe(this, bills -> {
             recurringTotal = 0;
-            StringBuilder sb = new StringBuilder();
             if (bills != null) {
                 for (RecurringBill bill : bills) {
                     recurringTotal += bill.getBillAmount();
-                    sb.append(bill.getBillName())
-                            .append(" (recurring): $")
-                            .append(String.format("%.2f", bill.getBillAmount()))
-                            .append("\n");
                 }
             }
-            binding.billsListTextView.setText(sb.toString());
             updateStatus();
         });
 
@@ -76,6 +69,9 @@ public class BudgetingActivity extends AppCompatActivity {
         binding.addBillButton.setOnClickListener(v -> addRecurringBill());
         binding.budgetingViewBackButton.setOnClickListener(v ->
                 startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), loggedInID)));
+
+        binding.viewSubscriptionsButton.setOnClickListener(v ->
+                startActivity(SubscriptionCostActivity.subscriptionCostActivityIntentFactory(getApplicationContext(), loggedInID)));
     }
 
     private void setBudget() {
