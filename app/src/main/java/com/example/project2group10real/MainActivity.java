@@ -59,4 +59,8 @@ public class MainActivity extends AppCompatActivity {
     static Intent mainIntentFactory(Context context) {
         return new Intent(context, MainActivity.class);
     }
+
+    public static Intent intentFactory(Context context){
+        return new Intent(context, MainActivity.class);
+    }
 }
