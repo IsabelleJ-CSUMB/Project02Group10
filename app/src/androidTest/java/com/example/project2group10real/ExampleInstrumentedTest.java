@@ -1,6 +1,7 @@
 package com.example.project2group10real;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Room;
@@ -48,14 +49,25 @@ public class ExampleInstrumentedTest {
     }
     @Test
     public void spendingDateTest() {
-        SpendingLog a = new SpendingLog(1,10,"Test", LocalDateTime.of(2026, 4, 29, 12, 0));
+        SpendingLog a = new SpendingLog(1,10,"Test", "2026-04-29 12:30");
         spendingDAO.insert(a);
         SpendingLog b = new SpendingLog(1,10,"Test");
         spendingDAO.insert(b);
         List<SpendingLog> logs = spendingDAO.getAllLogsbyUserIDCurrentMonth(1, SeeMonthActivity.convertDateToLong(LocalDateTime.now())).getValue();
         assertFalse(logs != null && logs.contains(a));
-
     }
+
+    @Test
+    public void landingIntentFactoryTest() {
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Intent intent = LandingActivity.landingActivityIntentFactory(appContext, 1);
+        Intent expectedIntent = new Intent(appContext, LandingActivity.class);
+        expectedIntent.putExtra("LANDING_ACTIVITY_USERID", 1);
+        int intentInt = intent.getIntExtra(LandingActivity.LANDING_ACTIVITY_USERID, -1);
+        int expectedInt = expectedIntent.getIntExtra(LandingActivity.LANDING_ACTIVITY_USERID, -1);
+        assertEquals(expectedInt, intentInt);
+    }
+
     @Test
     public void useAppContext() {
         // Context of the app under test.
