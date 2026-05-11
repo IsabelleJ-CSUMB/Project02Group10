@@ -18,6 +18,9 @@
             android:name=".SeeMonthActivity"
             android:exported="false" />
         <activity
+            android:name=".SubscriptionCostActivity"
+            android:exported="false" />
+        <activity
             android:name=".DataViewActivity"
             android:exported="false" />
         <activity
