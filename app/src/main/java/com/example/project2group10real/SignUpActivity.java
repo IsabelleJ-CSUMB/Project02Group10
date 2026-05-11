@@ -51,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+    //Intent Factory
 
     public static Intent intentFactory(Context context) {
         return new Intent(context, SignUpActivity.class);
