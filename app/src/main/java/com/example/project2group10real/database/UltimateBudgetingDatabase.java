@@ -29,7 +29,7 @@ public abstract class UltimateBudgetingDatabase extends RoomDatabase {
     private static volatile UltimateBudgetingDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
-   
+    //means database only uses max of 4 threads
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     static UltimateBudgetingDatabase getDatabase(final Context context) {
         if(INSTANCE == null) {
