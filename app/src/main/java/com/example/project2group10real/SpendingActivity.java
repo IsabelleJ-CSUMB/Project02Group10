@@ -49,6 +49,10 @@ public class SpendingActivity extends AppCompatActivity {
         binding.button3.setOnClickListener(v -> {
             startActivity(DataViewActivity.dataViewActivityIntentFactory(getApplicationContext(), loggedInID));
         });
+
+        binding.spendingViewBackButton.setOnClickListener(v -> {
+            startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), loggedInID));
+        });
     }
 
     private void insertSpendingRecord() {

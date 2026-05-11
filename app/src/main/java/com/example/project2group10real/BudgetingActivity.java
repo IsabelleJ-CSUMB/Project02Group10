@@ -75,6 +75,10 @@ public class BudgetingActivity extends AppCompatActivity {
                 addRecurringBill();
             }
         });
+
+        binding.budgetingViewBackButton.setOnClickListener(v -> {
+            startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), loggedInID));
+        });
     }
 
     private void setBudget() {

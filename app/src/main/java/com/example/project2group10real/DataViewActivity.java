@@ -49,6 +49,10 @@ public class DataViewActivity extends AppCompatActivity {
 
             adapter.submitList(Collections.unmodifiableList(spendingLogs));
         });
+
+        binding.dataViewBackButton.setOnClickListener(v -> {
+            startActivity(SpendingActivity.spendingViewActivityIntentFactory(getApplicationContext(), loggedInID));
+        });
     }
 
 

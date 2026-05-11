@@ -47,6 +47,10 @@ public class SeeMonthActivity extends AppCompatActivity {
 
             adapter.submitList(Collections.unmodifiableList(spendingLogs));
         });
+
+        binding.seeAllMonthsBackButton.setOnClickListener(v -> {
+            startActivity(SpendingActivity.spendingViewActivityIntentFactory(getApplicationContext(), loggedInID));
+        });
     }
 
     static Intent seeAllMonthsActivityIntentFactory(Context context, int userID) {
