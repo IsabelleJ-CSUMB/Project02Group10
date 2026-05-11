@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class UserTest {
 
+//Oscar Unit tests
     @Test
     public void testUsername(){
         User user = new User();
