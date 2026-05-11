@@ -1,5 +1,6 @@
 package com.example.project2group10real;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,9 +24,14 @@ public class SignUpActivity extends AppCompatActivity {
         binding.goBackToMainActivityButtonFromSignUp.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                Intent intent =MainActivity.intentFactory(SignUpActivity.this);
                 startActivity(intent);
             }
         });
     }
+    public static Intent intentFactory(Context context){
+        return new Intent(context, SignUpActivity.class);
+
+    }
+
 }
