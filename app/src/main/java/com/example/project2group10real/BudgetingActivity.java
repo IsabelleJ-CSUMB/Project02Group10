@@ -13,9 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project2group10real.database.UltimateBudgetingRepository;
 import com.example.project2group10real.database.entities.BudgetingLog;
 import com.example.project2group10real.database.entities.RecurringBill;
+import com.example.project2group10real.database.entities.SpendingLog;
 import com.example.project2group10real.databinding.ActivityBudgetingBinding;
-
-import java.util.List;
 
 public class BudgetingActivity extends AppCompatActivity {
 
@@ -28,7 +27,8 @@ public class BudgetingActivity extends AppCompatActivity {
     private int loggedInID;
 
     private double budgetGoal = 0;
-    private double totalBills = 0;
+    private double recurringTotal = 0;
+    private double spendingTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,40 +45,37 @@ public class BudgetingActivity extends AppCompatActivity {
         budgetGoal = prefs.getFloat(KEY_GOAL + loggedInID, 0f);
         updateStatus();
 
+
         repository.getRecurringBillsByUserID(loggedInID).observe(this, bills -> {
+            recurringTotal = 0;
+            StringBuilder sb = new StringBuilder();
             if (bills != null) {
-                totalBills = 0;
-                StringBuilder sb = new StringBuilder();
                 for (RecurringBill bill : bills) {
-                    totalBills += bill.getBillAmount();
+                    recurringTotal += bill.getBillAmount();
                     sb.append(bill.getBillName())
                             .append(" (recurring): $")
                             .append(String.format("%.2f", bill.getBillAmount()))
                             .append("\n");
                 }
-                binding.billsListTextView.setText(sb.toString());
-                updateStatus();
             }
+            binding.billsListTextView.setText(sb.toString());
+            updateStatus();
         });
 
-        binding.setBudgetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setBudget();
+        repository.getAllSpendingLogsByUserID(loggedInID).observe(this, logs -> {
+            spendingTotal = 0;
+            if (logs != null) {
+                for (SpendingLog log : logs) {
+                    spendingTotal += log.getAmount();
+                }
             }
+            updateStatus();
         });
 
-      
-        binding.addBillButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addRecurringBill();
-            }
-        });
-
-        binding.budgetingViewBackButton.setOnClickListener(v -> {
-            startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), loggedInID));
-        });
+        binding.setBudgetButton.setOnClickListener(v -> setBudget());
+        binding.addBillButton.setOnClickListener(v -> addRecurringBill());
+        binding.budgetingViewBackButton.setOnClickListener(v ->
+                startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), loggedInID)));
     }
 
     private void setBudget() {
@@ -102,14 +99,13 @@ public class BudgetingActivity extends AppCompatActivity {
         prefs.edit().putFloat(KEY_GOAL + loggedInID, (float) budgetGoal).apply();
         updateStatus();
 
-        BudgetingLog log = new BudgetingLog(loggedInID, (int) totalBills, (int) budgetGoal);
+        BudgetingLog log = new BudgetingLog(loggedInID, (int)(recurringTotal + spendingTotal), (int) budgetGoal);
         repository.insertBudgetingLog(log);
     }
 
     private void addRecurringBill() {
         String name = binding.billNameEditText.getText().toString();
         String amtRaw = binding.billAmountEditText.getText().toString();
-
         if (name.isEmpty() || amtRaw.isEmpty()) return;
 
         double amount;
@@ -120,14 +116,14 @@ public class BudgetingActivity extends AppCompatActivity {
             return;
         }
 
-        RecurringBill bill = new RecurringBill(loggedInID, name, amount);
-        repository.insertRecurringBill(bill);
-
+        repository.insertRecurringBill(new RecurringBill(loggedInID, name, amount));
         binding.billNameEditText.setText("");
         binding.billAmountEditText.setText("");
     }
 
     private void updateStatus() {
+        double totalSpent = recurringTotal + spendingTotal;
+
         if (budgetGoal > 0) {
             binding.budgetGoalEditText.setVisibility(View.GONE);
             binding.setBudgetButton.setText("Change Budget");
@@ -139,14 +135,14 @@ public class BudgetingActivity extends AppCompatActivity {
             return;
         }
 
-        int percent = (int) Math.min((totalBills / budgetGoal) * 100, 100);
+        int percent = (int) Math.min((totalSpent / budgetGoal) * 100, 100);
         binding.budgetProgressBar.setProgress(percent);
 
-        double remaining = budgetGoal - totalBills;
+        double remaining = budgetGoal - totalSpent;
         if (remaining >= 0) {
             binding.budgetStatusTextView.setText(
                     "Budget: $" + String.format("%.2f", budgetGoal) +
-                            "  |  Spent: $" + String.format("%.2f", totalBills) +
+                            "  |  Spent: $" + String.format("%.2f", totalSpent) +
                             "  |  Left: $" + String.format("%.2f", remaining)
             );
         } else {
