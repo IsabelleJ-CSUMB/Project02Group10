@@ -29,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Boolean isLoggedIn = sharedPref.getBoolean("isLoggedIn", false);
 
         if(isLoggedIn) {
-            Intent intent = new Intent(MainActivity.this, LandingActivity.class);
-            startActivity(intent);
+            //shared pref is shared in login and uses the same file to read and write from
+            int savedUserID = sharedPref.getInt("loggedInUserID", -1);
+            startActivity(LandingActivity.landingActivityIntentFactory(getApplicationContext(), savedUserID));
             finish();
             return;
         }
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static Intent mainIntentFactory(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
+
+    public static Intent intentFactory(Context context){
         return new Intent(context, MainActivity.class);
     }
 }

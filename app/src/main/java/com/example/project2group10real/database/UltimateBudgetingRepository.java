@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.project2group10real.LandingActivity;
 import com.example.project2group10real.database.entities.BudgetingLog;
+import com.example.project2group10real.database.entities.RecurringBill;
 import com.example.project2group10real.database.entities.SpendingLog;
 import com.example.project2group10real.database.entities.User;
 
@@ -20,6 +21,7 @@ public class UltimateBudgetingRepository {
     private final SpendingDAO spendingDAO;
     private final UserDAO userDAO;
     private final BudgetingDAO budgetingDAO;
+    private final RecurringBillDAO recurringBillDAO;
 
     private static UltimateBudgetingRepository repository;
 
@@ -28,6 +30,7 @@ public class UltimateBudgetingRepository {
         this.spendingDAO = db.spendingDao();
         this.userDAO = db.userDAO();
         this.budgetingDAO = db.budgetingDAO();
+        this.recurringBillDAO = db.recurringBillDAO();
     }
 
     public static UltimateBudgetingRepository getRepository(Application application) {
@@ -45,7 +48,7 @@ public class UltimateBudgetingRepository {
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            Log.i(LandingActivity.TAG, "Problem getting Repository, thread error");
+//            Log.i(LandingActivity.TAG, "Problem getting Repository, thread error");
         }
         return null;
     }
@@ -93,5 +96,24 @@ public class UltimateBudgetingRepository {
 
     public LiveData<List<BudgetingLog>> getBudgetingLogsByUserIDLiveData(int userID) {
         return budgetingDAO.getAllLogsByUserIDLiveData(userID);
+    }
+
+    public void insertRecurringBill(RecurringBill bill) {
+        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() -> recurringBillDAO.insert(bill));
+    }
+
+    public void deleteRecurringBill(RecurringBill bill) {
+        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() -> recurringBillDAO.delete(bill));
+    }
+
+    public LiveData<List<RecurringBill>> getRecurringBillsByUserID(int userID) {
+        return recurringBillDAO.getBillsByUserID(userID);
+    }
+    public LiveData<List<User>> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
+
+    public void deleteUser(User user) {
+        UltimateBudgetingDatabase.databaseWriteExecutor.execute(() -> userDAO.delete(user));
     }
 }

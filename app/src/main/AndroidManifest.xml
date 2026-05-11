@@ -15,7 +15,10 @@
             android:name=".LogActivity"
             android:exported="false" />
         <activity
-            android:name=".seeAllMonthsActivity"
+            android:name=".SeeMonthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SubscriptionCostActivity"
             android:exported="false" />
         <activity
             android:name=".DataViewActivity"
@@ -38,6 +41,12 @@
         <activity
             android:name=".AdminActivity"
             android:exported="false"/>
+        <activity
+            android:name=".DeleteUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewDataActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

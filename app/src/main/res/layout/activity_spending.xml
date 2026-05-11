@@ -10,37 +10,63 @@
     <TextView
         android:id="@+id/SpendingHeaderTextView"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
         android:text="@string/spending"
         android:textSize="40sp"
-        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        app:layout_constraintTop_toTopOf="parent"
+    <ProgressBar
+        android:id="@+id/spendingProgressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="345dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SpendingHeaderTextView" />
+
+    <TextView
+        android:id="@+id/spendingStatusTextView"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="No budget set."
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/spendingProgressBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
     <EditText
         android:id="@+id/amountInputEditText"
         android:layout_width="345dp"
         android:layout_height="42dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:hint="Enter Cost"
         android:inputType="number|numberDecimal"
         android:padding="8dp"
-        app:layout_constraintStart_toStartOf="@id/button1"
-        app:layout_constraintEnd_toEndOf="@id/button1"
-        app:layout_constraintTop_toBottomOf="@id/SpendingHeaderTextView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spendingStatusTextView" />
+
     <EditText
         android:id="@+id/nameInputEditText"
         android:layout_width="345dp"
         android:layout_height="42dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:hint="Enter Name of Item"
         android:inputType="textAutoComplete"
         android:padding="8dp"
-        app:layout_constraintStart_toStartOf="@id/button1"
-        app:layout_constraintEnd_toEndOf="@id/button1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amountInputEditText" />
+
     <Button
         android:id="@+id/button1"
         android:layout_width="250dp"
@@ -50,7 +76,7 @@
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf= "@id/nameInputEditText" />
+        app:layout_constraintTop_toBottomOf="@id/nameInputEditText" />
 
     <Button
         android:id="@+id/button2"
@@ -73,4 +99,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button2"/>
+
+    <Button
+        android:id="@+id/spendingViewBackButton"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:text="Back"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

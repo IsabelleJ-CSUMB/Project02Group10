@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spendingButton" />
     <Button
-    	android:id="@+id/DeleteUserButton"
+    	android:id="@+id/deleteUsersButton"
 		android:layout_width="250dp"
 		android:layout_height="100dp"
 		android:layout_marginTop="8dp"
@@ -51,7 +51,7 @@
     	app:layout_constraintStart_toStartOf="parent"
     	app:layout_constraintTop_toBottomOf="@id/budgetingButton"/>
 	<Button
-		android:id="@+id/seeDataButton"
+		android:id="@+id/viewDataButton"
 		android:layout_width="250dp"
 		android:layout_height="100dp"
 		android:layout_marginTop="8dp"
@@ -60,7 +60,7 @@
 		android:visibility="gone"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/DeleteUserButton"/>
+		app:layout_constraintTop_toBottomOf="@id/deleteUsersButton"/>
 
 
 
