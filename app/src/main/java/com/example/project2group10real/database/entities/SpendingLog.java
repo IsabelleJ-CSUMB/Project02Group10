@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey;
 
 import com.example.project2group10real.database.UltimateBudgetingDatabase;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity(tableName = UltimateBudgetingDatabase.SPENDING_TABLE)
@@ -17,13 +19,15 @@ public class SpendingLog {
     private int userID;
     private double amount;
     private String spendingName;
-    private LocalDateTime  date;
+    private String date;
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SpendingLog that = (SpendingLog) o;
-        return id == that.id && userID == that.userID && Double.compare(amount, that.amount) == 0 && Objects.equals(spendingName, that.spendingName) && Objects.equals(date, that.date);
+        return id == that.id && userID == that.userID && Double.compare(amount, that.amount) == 0
+                && Objects.equals(spendingName, that.spendingName)
+                && Objects.equals(date, that.date);
     }
 
     @Override
@@ -38,11 +42,11 @@ public class SpendingLog {
         this.userID = userID;
         this.amount = amount;
         this.spendingName = spendingName;
-        date = LocalDateTime.now();
+        this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(new Date());
     }
 
     @Ignore
-    public SpendingLog(int userID, double amount, String spendingName, LocalDateTime date) {
+    public SpendingLog(int userID, double amount, String spendingName, String date) {
         this.userID = userID;
         this.amount = amount;
         this.spendingName = spendingName;
@@ -61,13 +65,8 @@ public class SpendingLog {
     public String getSpendingName() { return spendingName; }
     public void setSpendingName(String spendingName) { this.spendingName = spendingName; }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
+    public String getDate() { return date; }
+    public void setDate(String date) { this.date = date; }
 
     @Override
     public String toString() {
