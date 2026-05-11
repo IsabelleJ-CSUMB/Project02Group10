@@ -11,6 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project2group10real.database.UltimateBudgetingRepository;
+import com.example.project2group10real.database.entities.RecurringBill;
 import com.example.project2group10real.database.entities.SpendingLog;
 import com.example.project2group10real.databinding.ActivitySpendingBinding;
 
@@ -23,7 +24,8 @@ public class SpendingActivity extends AppCompatActivity {
     private UltimateBudgetingRepository repository;
 
     private double budgetGoal = 0;
-    private double totalSpent = 0;
+    private double spendingTotal = 0;
+    private double recurringTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +42,21 @@ public class SpendingActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("BudgetingPrefs", Context.MODE_PRIVATE);
         budgetGoal = prefs.getFloat("budget_goal_" + loggedInID, 0f);
 
+        repository.getRecurringBillsByUserID(loggedInID).observe(this, bills -> {
+            recurringTotal = 0;
+            if (bills != null) {
+                for (RecurringBill bill : bills) {
+                    recurringTotal += bill.getBillAmount();
+                }
+            }
+            updateProgressBar();
+        });
+
         repository.getAllSpendingLogsByUserID(loggedInID).observe(this, logs -> {
-            totalSpent = 0;
+            spendingTotal = 0;
             if (logs != null) {
                 for (SpendingLog log : logs) {
-                    totalSpent += log.getAmount();
+                    spendingTotal += log.getAmount();
                 }
             }
             updateProgressBar();
@@ -55,6 +67,7 @@ public class SpendingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInformation();
                 insertSpendingRecord();
+                //updateScreen();
             }
         });
 
@@ -86,6 +99,7 @@ public class SpendingActivity extends AppCompatActivity {
     }
 
     private void updateProgressBar() {
+        double totalSpent = recurringTotal + spendingTotal;
         if (budgetGoal <= 0) {
             binding.spendingProgressBar.setProgress(0);
             binding.spendingStatusTextView.setText("No budget set. Go to Budgeting to set one.");
