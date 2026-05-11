@@ -57,6 +57,11 @@ public abstract class UltimateBudgetingDatabase extends RoomDatabase {
 
                 User testUser1 = new User("testUser1", "testUser1");
                 dao.insert(testUser1);
+
+                SpendingDAO spendingDAO = INSTANCE.spendingDao();
+
+                SpendingLog log = new SpendingLog(1,10,"Test", "2026-04-29 12:30");
+                spendingDAO.insert(log);
             });
         }
     };
