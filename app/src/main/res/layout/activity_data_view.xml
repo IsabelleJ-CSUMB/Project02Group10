@@ -8,14 +8,15 @@
     tools:context=".DataViewActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logDisplayRecyclerView"
         android:layout_width="0dp"
         android:layout_height="450dp"
-        tools:listitem="@layout/spendinglog_recycler_item"
+        android:layout_marginTop="116dp"
         android:padding="2dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/logDisplayRecyclerView"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/spendinglog_recycler_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -157,17 +157,22 @@ public class LandingActivity extends AppCompatActivity {
 
                 // 👇 ADD THIS HERE
                 if (adminStatus) {
-                    binding.adminButton.setVisibility(View.VISIBLE);
-                    binding.adminButton.setText("Admin");
+                    binding.DeleteUserButton.setVisibility(View.VISIBLE);
+                    binding.seeDataButton.setVisibility(View.VISIBLE);
                 } else {
-                    binding.adminButton.setVisibility(View.GONE);
+                    binding.DeleteUserButton.setVisibility(View.GONE);
+                    binding.seeDataButton.setVisibility(View.GONE);
+
                 }
 
                 invalidateOptionsMenu();
             }
         });
 
-        binding.adminButton.setOnClickListener(v -> {
+        binding.DeleteUserButton.setOnClickListener(v -> {
+            startActivity(new Intent(LandingActivity.this, AdminActivity.class));
+        });
+        binding.seeDataButton.setOnClickListener(v -> {
             startActivity(new Intent(LandingActivity.this, AdminActivity.class));
         });
     }
